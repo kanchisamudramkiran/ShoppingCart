@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/kanchisamudramkiran/ShoppingCart/issues"
   },
-  "homepage": "https://github.com/kanchisamudramkiran/ShoppingCart#readme"
+  "homepage": "https://github.com/kanchisamudramkiran/ShoppingCart#readme",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
 }
