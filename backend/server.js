@@ -6,6 +6,8 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import cors from 'cors'
+import { protect } from './middleware/authMiddleware.js'
+
 // import products from './data/products'
 // const products = require('./data/products')
 
@@ -13,7 +15,7 @@ dotenv.config()
 connectDB()
 
 const app = express()
-
+app.use(express.json())
 
 app.use(cors({
   origin: '*'
@@ -21,20 +23,21 @@ app.use(cors({
 
 app.use('/api/products',productRoutes)
 app.use('/api/users',userRoutes)
-
+app.use(protect)
 app.use(notFound)
 app.use(errorHandler)
 
-app.use((err,req,res,next) =>{
 
-const statusCode = res.statusCode === 200?500 : res.statusCode
+// app.use((err,req,res,next) =>{
 
-res.statusCode(statusCode)
-res.json({
-  message: err.message,
-  stack: process.env.NODE_ENV === 'production'?null:err.stack
-})
-})
+// const statusCode = res.statusCode === 200?500 : res.statusCode
+
+// res.statusCode(statusCode)
+// res.json({
+//   message: err.message,
+//   stack: process.env.NODE_ENV === 'production'?null:err.stack
+// })
+// })
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from

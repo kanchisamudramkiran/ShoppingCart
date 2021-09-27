@@ -6,6 +6,8 @@ import Footer from './components/Footer'
 import HomeScreen from './views/HomeScreen'
 import ProductScreen from './views/ProductScreen'
 import CartScreen from './views/CartScreen'
+import LoginScreen from './views/LoginScreen'
+import RegisterScreen from './views/RegisterScreen'
 
 // const http = require('http');
 // const port = process.env.PORT || 3000
@@ -31,7 +33,9 @@ import CartScreen from './views/CartScreen'
   <Route path='/' component={HomeScreen} exact/>
   <Route path='/product/:id' component={ProductScreen}/>
   <Route path='/cart/:id?' component={CartScreen}/>
-
+  <Route path='/login' component={LoginScreen} exact/>
+  <Route path='/register' component={RegisterScreen} exact/>
+ 
       </Container>
     </main>
       <Footer />
