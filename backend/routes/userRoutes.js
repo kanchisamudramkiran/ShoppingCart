@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import {getUsers,authUser, getUserProfile} from '../controller/userController.js'
+import {getUsers,authUser,registerUser, getUserProfile, updateUserProfile,deleteUser,getUserById, updateUser} from '../controller/userController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
 // @desc  Fetch all the products
@@ -8,9 +8,18 @@ import { protect, admin } from '../middleware/authMiddleware.js'
 // @access Public
 router.get('/',getUsers)
 router.get('/login',authUser)
-// router.route('/profile').get(getUserProfile)
+router.route('/register').post(registerUser)
+.get(protect, admin, getUsers)
+
+router.post('/login', authUser)
 router
   .route('/profile')
   .get(protect, getUserProfile)
+  .put(protect, updateUserProfile)
+router
+  .route('/:id')
+  .delete(protect, admin, deleteUser)
+  .get(protect, admin, getUserById)
+  .put(protect, admin, updateUser)
 
 export default router

@@ -23,7 +23,7 @@ app.use(cors({
 
 app.use('/api/products',productRoutes)
 app.use('/api/users',userRoutes)
-app.use(protect)
+// app.use(protect)
 app.use(notFound)
 app.use(errorHandler)
 
